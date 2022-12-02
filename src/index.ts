@@ -9,6 +9,8 @@ export const server = new ApolloServer({
   schema,
   context,
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
+  introspection: true,
+  csrfPrevention: true,
 });
 
 const port = 4000;
