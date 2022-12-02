@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node-dev --transpile-only --no-notify --exit-child src/index.ts",
     "generate": "ts-node --transpile-only src/schema.ts",
-    "db": "npm run generate && npx prisma generate"
+    "db": "npm run generate && npx prisma generate",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +18,9 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.9",
+    "pre-commit": "^1.2.2",
     "prisma": "^4.6.1",
+    "rimraf": "^3.0.2",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.3.5"
   },
@@ -27,5 +32,10 @@
     "graphql": "^15.5.1",
     "jsonwebtoken": "^8.5.1",
     "nexus": "^1.1.0"
-  }
+  },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ]
 }
