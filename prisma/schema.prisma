@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+
+model User {
+  id String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime @default(now())
+  email String @unique
+  password String
+  profileImage String?
+  firstName String
+  lastName String
+  issues Issue[] @relation("creator")
+  assignee Issue[] @relation("assignee")
+  reporter Issue[] @relation("reporter")
+  projects Project[] @relation("owner")
+  projectLead Project[] @relation("lead")
+}
+
+model Issue {
+  id String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime @default(now())
+  createdBy User @relation("creator", fields: [creatorId], references: [id])
+  creatorId String @db.ObjectId
+  assignee User? @relation("assignee", fields: [assigneeId], references: [id])
+  assigneeId String? @db.ObjectId
+  reporterId String? @db.ObjectId
+  reporter User? @relation("reporter", fields: [reporterId], references: [id])
+  isBackLogTask Boolean
+  description String
+  status String
+  project Project @relation(fields: [projectId], references: [id])
+  projectId String 
+  sprint Sprint? @relation(fields: [sprintId], references: [id])
+  sprintId String? @db.ObjectId
+}
+
+model Project {
+  id String   @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  key String
+  sprints Sprint[] 
+  backlog Issue[]
+  ownerId String @db.ObjectId
+  owner User @relation("owner",fields: [ownerId], references: [id])
+  projectLeadId String? @db.ObjectId
+  projectLead User? @relation("lead",fields: [projectLeadId], references: [id])
+}
+
+model Sprint {
+  id String   @id @default(auto()) @map("_id") @db.ObjectId
+  startDate   DateTime 
+  endDate DateTime
+  project Project @relation(fields: [projectId], references: [id])
+  projectId String 
+  status String
+  issues Issue[]
+}
