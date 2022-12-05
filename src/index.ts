@@ -22,7 +22,9 @@ async function startApolloServer() {
 
   server.applyMiddleware({ app, path: "/api/graphql" });
 
-  await new Promise((resolve) => app.listen(8080, () => {}));
+  app.listen(8080, () => {
+    console.log("server started");
+  });
   return { server, app };
 }
 
