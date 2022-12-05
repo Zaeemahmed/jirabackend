@@ -22,7 +22,7 @@ async function startApolloServer() {
 
   await server.start();
 
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ app, path: "/" });
 
   await new Promise((resolve) => app.listen({ port: 4000 }, () => {}));
   return { server, app };
