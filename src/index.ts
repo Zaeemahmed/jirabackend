@@ -1,21 +1,31 @@
-import { ApolloServer } from "apollo-server";
+import { ApolloServer, CorsOptions } from "apollo-server-express";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import express from "express";
 import cors from "cors";
 
 import { schema } from "./schema";
 import { context } from "./context";
 
-export const server = new ApolloServer({
-  schema,
-  context,
-  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
-  introspection: true,
-  csrfPrevention: true,
-  cors: { origin: "https://jirabackend.vercel.app/", credentials: true },
-});
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-const port = 4000;
+async function startApolloServer() {
+  const app = express();
+  const server = new ApolloServer({
+    schema,
+    context,
+    plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
+    introspection: true,
+    csrfPrevention: true,
+  });
 
-server.listen({ port }).then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+  await server.start();
+
+  server.applyMiddleware({ app });
+
+  await new Promise((resolve) => app.listen({ port: 4000 }, () => {}));
+  return { server, app };
+}
+
+startApolloServer();
