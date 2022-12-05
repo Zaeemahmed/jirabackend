@@ -6,12 +6,10 @@ import cors from "cors";
 import { schema } from "./schema";
 import { context } from "./context";
 
-const app = express();
-app.use(cors());
-app.use(express.json());
-
 async function startApolloServer() {
   const app = express();
+
+  app.use(cors());
   const server = new ApolloServer({
     schema,
     context,
@@ -22,7 +20,7 @@ async function startApolloServer() {
 
   await server.start();
 
-  server.applyMiddleware({ app, path: "/" });
+  server.applyMiddleware({ app, path: "/api/graphql" });
 
   await new Promise((resolve) => app.listen(8080, () => {}));
   return { server, app };
