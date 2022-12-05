@@ -1,4 +1,4 @@
-import { ApolloServer, CorsOptions } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import express from "express";
 import cors from "cors";
@@ -24,7 +24,7 @@ async function startApolloServer() {
 
   server.applyMiddleware({ app, path: "/" });
 
-  await new Promise((resolve) => app.listen({ port: 4000 }, () => {}));
+  await new Promise((resolve) => app.listen(8080, () => {}));
   return { server, app };
 }
 
