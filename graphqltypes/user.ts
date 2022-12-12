@@ -3,6 +3,7 @@ import { objectType, extendType } from "nexus";
 export const User = objectType({
   name: "User",
   definition(t) {
+    
     t.nonNull.string("id");
     t.nonNull.string("fullName");
     t.nullable.string("profileImage");
