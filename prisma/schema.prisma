@@ -17,7 +17,7 @@ model User {
   createdAt   DateTime @default(now())
   email String @unique
   password String
-  site String
+  site String?
   profileImage String?
   fullName String
   issues Issue[] @relation("creator")

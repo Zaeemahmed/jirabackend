@@ -29,7 +29,7 @@ type Mutation {
   createSprint(endDate: String!, projectId: String, startDate: String!): Sprint!
   issueCreate(assigneeId: String, description: String!, isBackLogTask: Boolean!, projectId: String!, reporterId: String, sprintId: String!, status: String!): Issue!
   login(email: String!, password: String!): AuthPayload!
-  signup(email: String!, fullName: String!, password: String!, profileImage: String, site: String!): AuthPayload!
+  signup(email: String!, fullName: String!, password: String!): AuthPayload!
 }
 
 type Project {
@@ -73,5 +73,5 @@ type User {
   projectLead: [Project]
   projects: [Project]
   reporter: [Issue]
-  site: String!
+  site: String
 }

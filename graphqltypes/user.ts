@@ -7,7 +7,7 @@ export const User = objectType({
     t.nonNull.string("fullName");
     t.nullable.string("profileImage");
     t.nonNull.string("email");
-    t.nonNull.string("site");
+    t.nullable.string("site");
     t.nonNull.string("password");
     t.nullable.list.nullable.field("issues", {
       type: "Issue",

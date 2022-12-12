@@ -67,7 +67,7 @@ export interface NexusGenObjects {
     id: string; // String!
     password: string; // String!
     profileImage?: string | null; // String
-    site: string; // String!
+    site?: string | null; // String
   }
 }
 
@@ -147,7 +147,7 @@ export interface NexusGenFieldTypes {
     projectLead: Array<NexusGenRootTypes['Project'] | null> | null; // [Project]
     projects: Array<NexusGenRootTypes['Project'] | null> | null; // [Project]
     reporter: Array<NexusGenRootTypes['Issue'] | null> | null; // [Issue]
-    site: string; // String!
+    site: string | null; // String
   }
 }
 
@@ -249,8 +249,6 @@ export interface NexusGenArgTypes {
       email: string; // String!
       fullName: string; // String!
       password: string; // String!
-      profileImage?: string | null; // String
-      site: string; // String!
     }
   }
   Query: {

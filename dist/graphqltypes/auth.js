@@ -42,19 +42,15 @@ exports.AuthMutation = nexus_1.extendType({
                 email: nexus_1.nonNull(nexus_1.stringArg()),
                 password: nexus_1.nonNull(nexus_1.stringArg()),
                 fullName: nexus_1.nonNull(nexus_1.stringArg()),
-                profileImage: nexus_1.stringArg(),
-                site: nexus_1.nonNull(nexus_1.stringArg()),
             },
             async resolve(parent, args, context) {
-                const { email, password, fullName, profileImage, site } = args;
+                const { email, password, fullName } = args;
                 const hashedPassword = await bcrypt.hash(password, 10);
                 const user = await context.prisma.user.create({
                     data: {
                         email,
                         password: hashedPassword,
                         fullName,
-                        profileImage,
-                        site,
                     },
                 });
                 const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
