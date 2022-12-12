@@ -21,12 +21,12 @@ export const AuthMutation = extendType({
       args: {
         email: nonNull(stringArg()),
         password: nonNull(stringArg()),
-        firstName: nonNull(stringArg()),
-        lastName: nonNull(stringArg()),
+        fullName: nonNull(stringArg()),
         profileImage: stringArg(),
+        site: nonNull(stringArg()),
       },
       async resolve(parent, args, context) {
-        const { email, password, firstName, lastName, profileImage } = args;
+        const { email, password, fullName, profileImage, site } = args;
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -34,9 +34,9 @@ export const AuthMutation = extendType({
           data: {
             email,
             password: hashedPassword,
-            firstName,
-            lastName,
+            fullName,
             profileImage,
+            site,
           },
         });
 

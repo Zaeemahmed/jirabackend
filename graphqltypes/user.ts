@@ -4,10 +4,10 @@ export const User = objectType({
   name: "User",
   definition(t) {
     t.nonNull.string("id");
-    t.nonNull.string("firstName");
-    t.nonNull.string("lastName");
+    t.nonNull.string("fullName");
     t.nullable.string("profileImage");
     t.nonNull.string("email");
+    t.nonNull.string("site");
     t.nonNull.string("password");
     t.nullable.list.nullable.field("issues", {
       type: "Issue",

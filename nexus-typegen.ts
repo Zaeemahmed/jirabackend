@@ -63,11 +63,11 @@ export interface NexusGenObjects {
   }
   User: { // root type
     email: string; // String!
-    firstName: string; // String!
+    fullName: string; // String!
     id: string; // String!
-    lastName: string; // String!
     password: string; // String!
     profileImage?: string | null; // String
+    site: string; // String!
   }
 }
 
@@ -139,15 +139,15 @@ export interface NexusGenFieldTypes {
   User: { // field return type
     assignee: Array<NexusGenRootTypes['Issue'] | null> | null; // [Issue]
     email: string; // String!
-    firstName: string; // String!
+    fullName: string; // String!
     id: string; // String!
     issues: Array<NexusGenRootTypes['Issue'] | null> | null; // [Issue]
-    lastName: string; // String!
     password: string; // String!
     profileImage: string | null; // String
     projectLead: Array<NexusGenRootTypes['Project'] | null> | null; // [Project]
     projects: Array<NexusGenRootTypes['Project'] | null> | null; // [Project]
     reporter: Array<NexusGenRootTypes['Issue'] | null> | null; // [Issue]
+    site: string; // String!
   }
 }
 
@@ -209,15 +209,15 @@ export interface NexusGenFieldTypeNames {
   User: { // field return type name
     assignee: 'Issue'
     email: 'String'
-    firstName: 'String'
+    fullName: 'String'
     id: 'String'
     issues: 'Issue'
-    lastName: 'String'
     password: 'String'
     profileImage: 'String'
     projectLead: 'Project'
     projects: 'Project'
     reporter: 'Issue'
+    site: 'String'
   }
 }
 
@@ -247,10 +247,10 @@ export interface NexusGenArgTypes {
     }
     signup: { // args
       email: string; // String!
-      firstName: string; // String!
-      lastName: string; // String!
+      fullName: string; // String!
       password: string; // String!
       profileImage?: string | null; // String
+      site: string; // String!
     }
   }
   Query: {
