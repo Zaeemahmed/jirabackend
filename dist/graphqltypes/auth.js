@@ -45,6 +45,12 @@ exports.AuthMutation = nexus_1.extendType({
             },
             async resolve(parent, args, context) {
                 const { email, password, fullName } = args;
+                const existingUser = await context.prisma.user.findUnique({
+                    where: { email: email },
+                });
+                if (existingUser) {
+                    throw new Error("User with this email already exists");
+                }
                 const hashedPassword = await bcrypt.hash(password, 10);
                 const user = await context.prisma.user.create({
                     data: {
