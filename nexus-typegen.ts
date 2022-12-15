@@ -121,6 +121,7 @@ export interface NexusGenFieldTypes {
     sprints: Array<NexusGenRootTypes['Sprint'] | null> | null; // [Sprint]
   }
   Query: { // field return type
+    getUser: NexusGenRootTypes['User'] | null; // User
     issues: NexusGenRootTypes['Issue'][]; // [Issue!]!
     projects: NexusGenRootTypes['Project'][]; // [Project!]!
     sprints: NexusGenRootTypes['Sprint'][]; // [Sprint!]!
@@ -191,6 +192,7 @@ export interface NexusGenFieldTypeNames {
     sprints: 'Sprint'
   }
   Query: { // field return type name
+    getUser: 'User'
     issues: 'Issue'
     projects: 'Project'
     sprints: 'Sprint'
@@ -252,6 +254,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    getUser: { // args
+      email: string; // String!
+    }
     sprints: { // args
       projectId: string; // String!
     }

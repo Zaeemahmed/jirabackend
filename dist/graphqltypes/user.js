@@ -62,6 +62,13 @@ exports.UserQuery = nexus_1.extendType({
                 return context.prisma.user.findMany();
             },
         });
+        t.nullable.field("getUser", {
+            type: "User",
+            args: { email: nexus_1.nonNull(nexus_1.stringArg()) },
+            resolve(parent, args, context) {
+                return context.prisma.user.findUnique({ where: { email: args.email } });
+            },
+        });
     },
 });
 //# sourceMappingURL=user.js.map

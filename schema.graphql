@@ -45,6 +45,7 @@ type Project {
 }
 
 type Query {
+  getUser(email: String!): User
   issues: [Issue!]!
   projects: [Project!]!
   sprints(projectId: String!): [Sprint!]!

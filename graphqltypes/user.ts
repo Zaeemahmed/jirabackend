@@ -1,4 +1,4 @@
-import { objectType, extendType } from "nexus";
+import { objectType, extendType, nonNull, stringArg } from "nexus";
 
 export const User = objectType({
   name: "User",
@@ -59,6 +59,14 @@ export const UserQuery = extendType({
       type: "User",
       resolve(parent, args, context) {
         return context.prisma.user.findMany();
+      },
+    });
+
+    t.nullable.field("getUser", {
+      type: "User",
+      args: { email: nonNull(stringArg()) },
+      resolve(parent, args, context) {
+        return context.prisma.user.findUnique({ where: { email: args.email } });
       },
     });
   },
