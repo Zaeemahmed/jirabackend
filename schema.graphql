@@ -29,6 +29,7 @@ type Mutation {
   createSprint(endDate: String!, projectId: String, startDate: String!): Sprint!
   issueCreate(assigneeId: String, description: String!, isBackLogTask: Boolean!, projectId: String!, reporterId: String, sprintId: String!, status: String!): Issue!
   login(email: String!, password: String!): AuthPayload!
+  setUserSite(email: String!, site: String!): User
   signup(email: String!, fullName: String!, password: String!): AuthPayload!
 }
 
@@ -48,7 +49,6 @@ type Query {
   getUser(email: String!): User
   issues: [Issue!]!
   projects: [Project!]!
-  setUserSite(email: String!, site: String!): User
   sprints(projectId: String!): [Sprint!]!
   users: [User!]!
 }

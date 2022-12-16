@@ -107,6 +107,7 @@ export interface NexusGenFieldTypes {
     createSprint: NexusGenRootTypes['Sprint']; // Sprint!
     issueCreate: NexusGenRootTypes['Issue']; // Issue!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
+    setUserSite: NexusGenRootTypes['User'] | null; // User
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
   }
   Project: { // field return type
@@ -124,7 +125,6 @@ export interface NexusGenFieldTypes {
     getUser: NexusGenRootTypes['User'] | null; // User
     issues: NexusGenRootTypes['Issue'][]; // [Issue!]!
     projects: NexusGenRootTypes['Project'][]; // [Project!]!
-    setUserSite: NexusGenRootTypes['User'] | null; // User
     sprints: NexusGenRootTypes['Sprint'][]; // [Sprint!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
@@ -179,6 +179,7 @@ export interface NexusGenFieldTypeNames {
     createSprint: 'Sprint'
     issueCreate: 'Issue'
     login: 'AuthPayload'
+    setUserSite: 'User'
     signup: 'AuthPayload'
   }
   Project: { // field return type name
@@ -196,7 +197,6 @@ export interface NexusGenFieldTypeNames {
     getUser: 'User'
     issues: 'Issue'
     projects: 'Project'
-    setUserSite: 'User'
     sprints: 'Sprint'
     users: 'User'
   }
@@ -249,6 +249,10 @@ export interface NexusGenArgTypes {
       email: string; // String!
       password: string; // String!
     }
+    setUserSite: { // args
+      email: string; // String!
+      site: string; // String!
+    }
     signup: { // args
       email: string; // String!
       fullName: string; // String!
@@ -258,10 +262,6 @@ export interface NexusGenArgTypes {
   Query: {
     getUser: { // args
       email: string; // String!
-    }
-    setUserSite: { // args
-      email: string; // String!
-      site: string; // String!
     }
     sprints: { // args
       projectId: string; // String!

@@ -69,6 +69,12 @@ export const UserQuery = extendType({
         return context.prisma.user.findUnique({ where: { email: args.email } });
       },
     });
+  },
+});
+
+export const UserMutation = extendType({
+  type: "Mutation",
+  definition(t) {
     t.nullable.field("setUserSite", {
       type: "User",
       args: { email: nonNull(stringArg()), site: nonNull(stringArg()) },

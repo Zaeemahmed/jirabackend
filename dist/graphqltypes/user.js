@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserQuery = exports.User = void 0;
+exports.UserMutation = exports.UserQuery = exports.User = void 0;
 const nexus_1 = require("nexus");
 exports.User = nexus_1.objectType({
     name: "User",
@@ -69,6 +69,11 @@ exports.UserQuery = nexus_1.extendType({
                 return context.prisma.user.findUnique({ where: { email: args.email } });
             },
         });
+    },
+});
+exports.UserMutation = nexus_1.extendType({
+    type: "Mutation",
+    definition(t) {
         t.nullable.field("setUserSite", {
             type: "User",
             args: { email: nexus_1.nonNull(nexus_1.stringArg()), site: nexus_1.nonNull(nexus_1.stringArg()) },
