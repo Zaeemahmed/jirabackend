@@ -48,6 +48,7 @@ type Query {
   getUser(email: String!): User
   issues: [Issue!]!
   projects: [Project!]!
+  setUserSite(email: String!, site: String!): User
   sprints(projectId: String!): [Sprint!]!
   users: [User!]!
 }

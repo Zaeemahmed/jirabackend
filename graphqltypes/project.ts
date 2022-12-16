@@ -7,6 +7,7 @@ export const Project = objectType({
     t.nonNull.string("ownerId");
     t.nonNull.string("name");
     t.nonNull.string("key");
+    
     t.nonNull.field("owner", {
       type: "User",
       resolve: (parent, _, ctx) => {

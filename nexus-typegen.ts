@@ -124,6 +124,7 @@ export interface NexusGenFieldTypes {
     getUser: NexusGenRootTypes['User'] | null; // User
     issues: NexusGenRootTypes['Issue'][]; // [Issue!]!
     projects: NexusGenRootTypes['Project'][]; // [Project!]!
+    setUserSite: NexusGenRootTypes['User'] | null; // User
     sprints: NexusGenRootTypes['Sprint'][]; // [Sprint!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
@@ -195,6 +196,7 @@ export interface NexusGenFieldTypeNames {
     getUser: 'User'
     issues: 'Issue'
     projects: 'Project'
+    setUserSite: 'User'
     sprints: 'Sprint'
     users: 'User'
   }
@@ -256,6 +258,10 @@ export interface NexusGenArgTypes {
   Query: {
     getUser: { // args
       email: string; // String!
+    }
+    setUserSite: { // args
+      email: string; // String!
+      site: string; // String!
     }
     sprints: { // args
       projectId: string; // String!

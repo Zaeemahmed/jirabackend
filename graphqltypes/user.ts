@@ -69,5 +69,15 @@ export const UserQuery = extendType({
         return context.prisma.user.findUnique({ where: { email: args.email } });
       },
     });
+    t.nullable.field("setUserSite", {
+      type: "User",
+      args: { email: nonNull(stringArg()), site: nonNull(stringArg()) },
+      resolve(parent, args, context) {
+        return context.prisma.user.update({
+          where: { email: args.email },
+          data: { site: args.site },
+        });
+      },
+    });
   },
 });
