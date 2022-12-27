@@ -79,7 +79,7 @@ export const UserMutation = extendType({
       type: "User",
       args: { email: nonNull(stringArg()), site: nonNull(stringArg()) },
       async resolve(parent, args, context) {
-        const existingUser = await context.prisma.user.findUnique({
+        const existingUser = await context.prisma.user.findFirst({
           where: { site: args.site },
         });
 

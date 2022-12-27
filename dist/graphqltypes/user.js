@@ -78,7 +78,7 @@ exports.UserMutation = nexus_1.extendType({
             type: "User",
             args: { email: nexus_1.nonNull(nexus_1.stringArg()), site: nexus_1.nonNull(nexus_1.stringArg()) },
             async resolve(parent, args, context) {
-                const existingUser = await context.prisma.user.findUnique({
+                const existingUser = await context.prisma.user.findFirst({
                     where: { site: args.site },
                 });
                 if (existingUser) {
