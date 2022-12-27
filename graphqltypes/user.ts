@@ -79,10 +79,14 @@ export const UserMutation = extendType({
       type: "User",
       args: { email: nonNull(stringArg()), site: nonNull(stringArg()) },
       resolve(parent, args, context) {
-        return context.prisma.user.update({
-          where: { email: args.email },
-          data: { site: args.site },
-        });
+        try {
+          return context.prisma.user.update({
+            where: { email: args.email },
+            data: { site: args.site },
+          });
+        } catch (err) {
+          return { error: err };
+        }
       },
     });
   },
