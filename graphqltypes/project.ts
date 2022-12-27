@@ -1,4 +1,4 @@
-import { objectType, extendType, nonNull, stringArg, nullable } from "nexus";
+import { objectType, extendType, nonNull, stringArg } from "nexus";
 
 export const Project = objectType({
   name: "Project",
@@ -16,7 +16,7 @@ export const Project = objectType({
         });
       },
     });
-    t.nullable.string(" ");
+    t.nullable.string("projectLeadId");
     t.nullable.field("projectLead", {
       type: "User",
       resolve: (parent, _, ctx) => {

@@ -9,9 +9,10 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const schema_1 = require("./schema");
 const context_1 = require("./context");
+const corsOptions_1 = require("./corsOptions");
 async function startApolloServer() {
     const app = express_1.default();
-    app.use(cors_1.default());
+    app.use(cors_1.default(corsOptions_1.corsOpts));
     const server = new apollo_server_express_1.ApolloServer({
         schema: schema_1.schema,
         context: context_1.context,
