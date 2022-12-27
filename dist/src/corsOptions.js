@@ -2,8 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.corsOpts = void 0;
 exports.corsOpts = {
-    origin: "*",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
 };
 //# sourceMappingURL=corsOptions.js.map
