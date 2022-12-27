@@ -17,7 +17,7 @@ exports.Project = nexus_1.objectType({
                 });
             },
         });
-        t.nullable.string(" ");
+        t.nullable.string("projectLeadId");
         t.nullable.field("projectLead", {
             type: "User",
             resolve: (parent, _, ctx) => {
