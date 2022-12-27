@@ -5,11 +5,12 @@ import cors from "cors";
 
 import { schema } from "./schema";
 import { context } from "./context";
+import { corsOpts } from "./corsOptions";
 
 async function startApolloServer() {
   const app = express();
 
-  app.use(cors());
+  app.use(cors(corsOpts));
   const server = new ApolloServer({
     schema,
     context,
