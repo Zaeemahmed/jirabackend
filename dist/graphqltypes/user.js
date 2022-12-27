@@ -77,7 +77,13 @@ exports.UserMutation = nexus_1.extendType({
         t.nullable.field("setUserSite", {
             type: "User",
             args: { email: nexus_1.nonNull(nexus_1.stringArg()), site: nexus_1.nonNull(nexus_1.stringArg()) },
-            resolve(parent, args, context) {
+            async resolve(parent, args, context) {
+                const existingUser = await context.prisma.user.findUnique({
+                    where: { site: args.site },
+                });
+                if (existingUser) {
+                    throw Error("Site name already taken");
+                }
                 try {
                     return context.prisma.user.update({
                         where: { email: args.email },
