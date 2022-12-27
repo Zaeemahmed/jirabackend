@@ -7,7 +7,7 @@ export const Project = objectType({
     t.nonNull.string("ownerId");
     t.nonNull.string("name");
     t.nonNull.string("key");
-    
+
     t.nonNull.field("owner", {
       type: "User",
       resolve: (parent, _, ctx) => {
@@ -16,7 +16,7 @@ export const Project = objectType({
         });
       },
     });
-    t.nullable.string("projectLeadId");
+    t.nullable.string(" ");
     t.nullable.field("projectLead", {
       type: "User",
       resolve: (parent, _, ctx) => {
@@ -79,6 +79,7 @@ export const ProjectMutation = extendType({
             ownerId: userId,
             name,
             key,
+            projectLeadId: userId,
           },
         });
 

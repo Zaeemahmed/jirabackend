@@ -17,7 +17,7 @@ exports.Project = nexus_1.objectType({
                 });
             },
         });
-        t.nullable.string("projectLeadId");
+        t.nullable.string(" ");
         t.nullable.field("projectLead", {
             type: "User",
             resolve: (parent, _, ctx) => {
@@ -76,6 +76,7 @@ exports.ProjectMutation = nexus_1.extendType({
                         ownerId: userId,
                         name,
                         key,
+                        projectLeadId: userId,
                     },
                 });
                 return {

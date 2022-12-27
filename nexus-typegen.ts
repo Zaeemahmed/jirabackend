@@ -46,11 +46,11 @@ export interface NexusGenObjects {
   }
   Mutation: {};
   Project: { // root type
+     ?: string | null; // String
     id: string; // String!
     key: string; // String!
     name: string; // String!
     ownerId: string; // String!
-    projectLeadId?: string | null; // String
   }
   Query: {};
   Sprint: { // root type
@@ -111,6 +111,7 @@ export interface NexusGenFieldTypes {
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
   }
   Project: { // field return type
+     : string | null; // String
     backlog: Array<NexusGenRootTypes['Issue'] | null> | null; // [Issue]
     id: string; // String!
     key: string; // String!
@@ -118,7 +119,6 @@ export interface NexusGenFieldTypes {
     owner: NexusGenRootTypes['User']; // User!
     ownerId: string; // String!
     projectLead: NexusGenRootTypes['User'] | null; // User
-    projectLeadId: string | null; // String
     sprints: Array<NexusGenRootTypes['Sprint'] | null> | null; // [Sprint]
   }
   Query: { // field return type
@@ -183,6 +183,7 @@ export interface NexusGenFieldTypeNames {
     signup: 'AuthPayload'
   }
   Project: { // field return type name
+     : 'String'
     backlog: 'Issue'
     id: 'String'
     key: 'String'
@@ -190,7 +191,6 @@ export interface NexusGenFieldTypeNames {
     owner: 'User'
     ownerId: 'String'
     projectLead: 'User'
-    projectLeadId: 'String'
     sprints: 'Sprint'
   }
   Query: { // field return type name

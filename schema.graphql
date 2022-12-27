@@ -34,6 +34,7 @@ type Mutation {
 }
 
 type Project {
+   : String
   backlog: [Issue]
   id: String!
   key: String!
@@ -41,7 +42,6 @@ type Project {
   owner: User!
   ownerId: String!
   projectLead: User
-  projectLeadId: String
   sprints: [Sprint]
 }
 
